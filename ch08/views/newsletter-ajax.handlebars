@@ -1,0 +1,50 @@
+<div class="formContainer">
+	<form >
+		<input type="hidden" name="_csrf" value="{{csrf}}">
+		<div>
+			<label>Name</label>
+			<div>
+				<input type="text" id="fieldName" name="name">
+			</div>
+		</div>
+		<div>
+			<label>Email</label>
+			<div>
+				<input type="email" required id="fieldName" name="email">
+			</div>
+		</div>
+		<div>
+			<div>
+				<input type="submit" onclick="sending(event)">
+			</div>
+		</div>
+	</form>
+</div>
+
+{{#section 'jquery'}}
+
+<script>
+	function sending(evt){
+			evt.preventDefault();
+			var action = "./process2/";
+
+			$.ajax({
+				type: 'POST',
+				url: action,
+				dataType: 'json',
+				success: function(data){
+					if(data.success){
+						$('div.formContainer').html('<h2>Thank you!</h2>');
+					} else {
+						$('div.formContainer').html('There was a problem.');
+					}
+				},
+				error: function(){
+					console.log("ERROR");
+					$('div.formContainer').html('There was a problem.');
+				}
+			});
+	}
+</script>
+
+{{/section}}

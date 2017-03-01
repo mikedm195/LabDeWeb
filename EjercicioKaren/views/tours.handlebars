@@ -1,0 +1,18 @@
+<!--<h1>About Meadowlark Travel (with handlebars)</h1>-->
+<h1>Tours</h1>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Lugar</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+        {{#each tours}}
+            <tr>
+                <td>{{this.lugar}}</td>
+                <td>{{this.fecha}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+  </table>
